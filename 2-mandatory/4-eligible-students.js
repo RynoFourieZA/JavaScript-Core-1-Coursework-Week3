@@ -4,12 +4,15 @@
   Create a function which:
   - Accepts an array which contains all the students' names and their attendance counts
     (see tests to confirm how this data will be structured)
-  - Returns an array containing only the names of the who have attended AT LEAST 8 classes
+  - Returns an array containing only the names of the students who have attended AT LEAST 8 classes
 */
 
-function getEligibleStudents() {
+function getEligibleStudents(attendance) {
+  
+  return attendance.filter(studentEl => studentEl[1] >= 8)
+  .map(studentEl => studentEl[0]); // I started out using a forEach with a if statement inside of it, then I realized I could put it inside the filter and then take the true statements that the filter gives and put them inside of the array map method. Then take only the first index of sub arrays
 
-}
+  }
 
 /* ======= TESTS - DO NOT MODIFY ===== */
 

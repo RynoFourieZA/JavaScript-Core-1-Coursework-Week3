@@ -15,8 +15,14 @@
   
 */
 
-function getSettlers() {}
-
+function getSettlers(famNameWithA) { 
+  let familyStaying = famNameWithA.filter((element) => element.includes("family") && element.includes("A"));
+ 
+  return familyStaying;;
+ 
+  
+  //famNameWithA.includes("family");
+ }
 /* ======= TESTS - DO NOT MODIFY ===== */
 
 const voyagers = [
