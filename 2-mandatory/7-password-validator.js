@@ -23,13 +23,49 @@ Expected Result:
 PasswordValidationResult=  [false, false, false, false, true]
 
 */
+// let mArray1 = [1,2,3,4,1];
+// console.log(`indexOf returns the index of the !!first!! occurrence of an element in an array <<https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf>> `);
+// console.log(`In the forEach callback below : arrayElement value is the the current element in the array` );
+// console.log(`In the forEach callback below : elementIndex value is the index of the current element in the array` );
+// console.log(`In the forEach callback below : wholeArray  value is the array that the forEach is acting on/looping through` );
+// mArray1.forEach( (arrayElement, elementIndex, wholeArray ) => {
+//    console.log( `ArrayElement variable is ${arrayElement} with a Index of ${elementIndex} and a indexOf value of ${wholeArray.indexOf(arrayElement)}`);
+//    if (elementIndex !== wholeArray.indexOf(arrayElement)) { // check if its a duplicate
+//       console.log(`The indexOf method returns the index of the first occurence of a element in an array and it returned ${wholeArray.indexOf(arrayElement)}, but we are dealing with index ${elementIndex}, which means it is a duplicate`);
+//    } 
+// });
 
 function validatePasswords(passwords) {
+  
+  let passwordCheck = [];
+  
+passwords.forEach((characters, index, wholeArray) => { 
+
+  console.log("WholeArray: ",wholeArray);
+  console.log(index);
+  console.log(characters);
+console.log(wholeArray.indexOf(characters));
+
+ if( characters.length >= 5 
+    && containsUppercaseLetter(characters) 
+    && containsLowercaseLetter(characters) 
+    && containsNumber(characters) 
+    && containsSymbol(characters) 
+    &&  wholeArray.indexOf(characters) === index)
+    {
+      passwordCheck.push(true);
+     }else {
+        passwordCheck.push(false);
+ }
+
+});
+
+return passwordCheck;
 }
 
 // Returns true if string contains at least one uppercase letter.
 function containsUppercaseLetter(string) {
-    return /[A-Z]/.test(string);
+    return /[A-Z]/.test(string) ;
 }
 
 // Returns true if string contains at least one lowercase letter.
