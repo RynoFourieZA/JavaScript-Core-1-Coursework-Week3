@@ -23,89 +23,73 @@ Expected Result:
 PasswordValidationResult=  [false, false, false, false, true]
 
 */
-// let mArray1 = [1,2,3,4,1];
-// console.log(`indexOf returns the index of the !!first!! occurrence of an element in an array <<https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf>> `);
-// console.log(`In the forEach callback below : arrayElement value is the the current element in the array` );
-// console.log(`In the forEach callback below : elementIndex value is the index of the current element in the array` );
-// console.log(`In the forEach callback below : wholeArray  value is the array that the forEach is acting on/looping through` );
-// mArray1.forEach( (arrayElement, elementIndex, wholeArray ) => {
-//    console.log( `ArrayElement variable is ${arrayElement} with a Index of ${elementIndex} and a indexOf value of ${wholeArray.indexOf(arrayElement)}`);
-//    if (elementIndex !== wholeArray.indexOf(arrayElement)) { // check if its a duplicate
-//       console.log(`The indexOf method returns the index of the first occurence of a element in an array and it returned ${wholeArray.indexOf(arrayElement)}, but we are dealing with index ${elementIndex}, which means it is a duplicate`);
-//    } 
-// });
 
 function validatePasswords(passwords) {
-  
   let passwordCheck = [];
-  
-passwords.forEach((characters, index, wholeArray) => { 
 
-  console.log("WholeArray: ",wholeArray);
-  console.log(index);
-  console.log(characters);
-console.log(wholeArray.indexOf(characters));
-
- if( characters.length >= 5 
-    && containsUppercaseLetter(characters) 
-    && containsLowercaseLetter(characters) 
-    && containsNumber(characters) 
-    && containsSymbol(characters) 
-    &&  wholeArray.indexOf(characters) === index)
-    {
+  passwords.forEach((characters, index, wholeArray) => {
+    if (
+      characters.length >= 5 &&
+      containsUppercaseLetter(characters) &&
+      containsLowercaseLetter(characters) &&
+      containsNumber(characters) &&
+      containsSymbol(characters) &&
+      wholeArray.indexOf(characters) === index
+    ) {
       passwordCheck.push(true);
-     }else {
-        passwordCheck.push(false);
- }
+    } else {
+      passwordCheck.push(false);
+    }
+  });
 
-});
-
-return passwordCheck;
+  return passwordCheck;
 }
 
 // Returns true if string contains at least one uppercase letter.
 function containsUppercaseLetter(string) {
-    return /[A-Z]/.test(string) ;
+  return /[A-Z]/.test(string);
 }
 
 // Returns true if string contains at least one lowercase letter.
 function containsLowercaseLetter(string) {
-    return /[a-z]/.test(string);
+  return /[a-z]/.test(string);
 }
 
 // Returns true if string contains at least one number.
 function containsNumber(string) {
-    return /[0-9]/.test(string);
+  return /[0-9]/.test(string);
 }
 
 // Returns true if string contains at least one symbol.
 function containsSymbol(string) {
-    return /[!#$%.*&]/.test(string);
+  return /[!#$%.*&]/.test(string);
 }
 
 /* ======= TESTS - DO NOT MODIFY ===== */
 
-const passwords1 = ["Se%5", "TktE.TJTU", "384#HsHF", "dvyyeyy!5", "tryT3729"]
-const passwords2 = ["StUFf27%", "Pl3nty!", "Jai33", "shajsaUA**&&", "Pl3nty!"]
+const passwords1 = ["Se%5", "TktE.TJTU", "384#HsHF", "dvyyeyy!5", "tryT3729"];
+const passwords2 = ["StUFf27%", "Pl3nty!", "Jai33", "shajsaUA**&&", "Pl3nty!"];
 
-const util = require('util');
+const util = require("util");
 
 function test(test_name, actual, expected) {
-    let status;
-    if (util.isDeepStrictEqual(actual, expected)) {
-        status = "PASSED";
-    } else {
-        status = `FAILED: expected: ${util.inspect(expected)} but your function returned: ${util.inspect(actual)}`;
-    }
+  let status;
+  if (util.isDeepStrictEqual(actual, expected)) {
+    status = "PASSED";
+  } else {
+    status = `FAILED: expected: ${util.inspect(
+      expected
+    )} but your function returned: ${util.inspect(actual)}`;
+  }
 
-    console.log(`${test_name}: ${status}`);
+  console.log(`${test_name}: ${status}`);
 }
 
 test(
   "validatePasswords function works - case 1",
   validatePasswords(passwords1),
   [false, false, true, false, false]
- );
+);
 
 test(
   "validatePasswords function works - case 2",
